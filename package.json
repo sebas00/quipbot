@@ -1,0 +1,29 @@
+{
+  "name": "quipbot",
+  "version": "1.0.0",
+  "description": "Quipbot",
+  "main": "callws.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node callws.js"
+  },
+  "keywords": [
+    "quip",
+    "websocket"
+  ],
+  "author": "Sebsatiaan de Man",
+  "license": "MIT",
+  "dependencies": {
+    "@salesforce-ux/design-system": "^2.2.1",
+    "assert": "^1.4.1",
+    "cheerio": "^0.22.0",
+    "connect-mongodb-session": "^1.3.0",
+    "express": "^4.15.2",
+    "express-session": "^1.15.1",
+    "jsforce": "^1.7.1",
+    "mongodb": "^2.2.24",
+    "node-rest-client": "^3.0.3",
+    "pug": "^2.0.0-beta11",
+    "websocket": "^1.0.24"
+  }
+}

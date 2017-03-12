@@ -1,0 +1,8 @@
+table(title=rtype)
+  tr
+   each value,key in records[0]
+    th #{key}
+  each record in records
+     tr
+      each value, key in record  
+       td  #{value}

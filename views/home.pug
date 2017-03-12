@@ -1,0 +1,33 @@
+html
+ head
+    meta(name="viewport", content="width=device-width, initial-scale=1")
+    link(rel='stylesheet', href='/assets/styles/salesforce-lightning-design-system.min.css')
+    title SDO QuipBot
+ body
+  
+
+  div
+   div.slds-global-header_container(style="display:block") 
+    div.slds-global-header.slds-grid.slds-grid--align-spread
+      div.slds-global-header__item
+        div.slds-global-header__logo
+          img(src="/assets/images/logo-noname.svg")
+      div.slds-text-heading--medium SDO QuipBot    
+      div.slds-global-header__item
+        ul.slds-global-header__item.slds-grid.slds-grid--vertical-align-center
+         li.slds-dropdown-trigger.slds-dropdown-trigger--click.slds-m-left--x-small
+          button.slds-button(title="person name" aria-haspopup="true")
+            span.slds-avatar.slds-avatar--circle.slds-avatar--medium
+              img(src="/assets/images/avatar2.jpg" alt="person name")
+   div.slds-tabs--default(style="margin-top:50px")
+    <ul class="slds-tabs--default__nav" role="tablist">
+    <li class="slds-tabs--default__item slds-active" title="Item One" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="0" aria-selected="true" aria-controls="tab-default-1" id="tab-default-1__item">Item One</a></li>
+    <li class="slds-tabs--default__item" title="Item Two" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-2" id="tab-default-2__item">Item Two</a></li>
+    <li class="slds-tabs--default__item" title="Item Three" role="presentation"><a class="slds-tabs--default__link" href="javascript:void(0);" role="tab" tabindex="-1" aria-selected="false" aria-controls="tab-default-3" id="tab-default-3__item">Item Three</a></li>
+    </ul>
+    <div id="tab-default-1" class="slds-tabs--default__content slds-show" role="tabpanel" aria-labelledby="tab-default-1__item">Item One Content</div>
+    <div id="tab-default-2" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-2__item">Item Two Content</div>
+    <div id="tab-default-3" class="slds-tabs--default__content slds-hide" role="tabpanel" aria-labelledby="tab-default-3__item">Item Three Content</div>
+
+   p
+    h1= message
