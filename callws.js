@@ -26,7 +26,7 @@ var store = new MongoDBStore(
 
 app.set('views', './views');
 app.set('view engine', 'pug');
-
+app.use('/favicon.ico', express.static(__dirname + '/favicon.ico'));
 app.use('/assets', express.static(__dirname + '/node_modules/@salesforce-ux/design-system/assets'));
 console.log(__dirname);
 app.use(require('express-session')({
@@ -77,7 +77,7 @@ app.get('/oauth2/callback', function(req, res) {
   var conn = new jsforce.Connection({ oauth2 : oauth2 });
   var code = req.param('code');
   conn.authorize(code, function(err, userInfo) {
-    if (err) { return console.error(err); }
+    if (err) { res.send('Error Authenticating, you didnt try org62 did you?'); return console.error(err); }
     // Now you can get the access token, refresh token, and instance URL information.
     // Save them to establish connection next time.
     //req.session.sfdcconn = conn;
@@ -91,7 +91,7 @@ app.get('/oauth2/callback', function(req, res) {
     console.log("User ID: " + userInfo.id);
     console.log("Org ID: " + userInfo.organizationId);
     sfcon = conn;
-    res.send('Hello World! connected to ' + conn.instanceUrl);
+    res.send('connected to ' + conn.instanceUrl);
     // ...
   });
 });
