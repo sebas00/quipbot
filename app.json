@@ -1,0 +1,50 @@
+{
+  "name": "SDO Quipbot",
+  "description": "Quipbot that retrieves and updates Salesforce data",
+  "keywords": [
+    "quip",
+    "salesforce"
+
+  ],
+ 
+  "repository": "https://github.com/sebas00/quipbot",
+  "success_url": "/",
+  "env": {
+  
+ 
+
+    "QUIP_TOKEN": {
+      "description": "Your Quip API token."
+    },
+    "SFDC_CONSUMER": {
+      "description": "Oauth consumer key."
+    },
+        "SFDC_SECRET": {
+      "description": "Oauth consumer secret."
+    },
+            "WHERE":{
+      "description": "heroku app location",
+      "value" : "https://yourquipbot.herokuapp.com"
+    }
+  },
+  "formation": {
+    "web": {
+      "quantity": 1
+    }
+  },
+  "addons": [
+    "openredis",
+    {
+      "plan": "mongolab:shared-single-small",
+      "as": "MONGO"
+    }
+    
+  ],
+  "environments": {
+    "test": {
+      "scripts": {
+        "test": "return;"
+      }
+    }
+  }
+}
