@@ -26,9 +26,10 @@ var store = new MongoDBStore(
 
 app.set('views', './views');
 app.set('view engine', 'pug');
+//no idea if this is right, seems to work.
 app.use('/favicon.ico', express.static(__dirname + '/favicon.ico'));
 app.use('/assets', express.static(__dirname + '/node_modules/@salesforce-ux/design-system/assets'));
-console.log(__dirname);
+
 app.use(require('express-session')({
       secret: 'This is a secret',
       cookie: {
@@ -53,6 +54,7 @@ var port = process.env.PORT || 3000;
 app.listen(port, function () {
   console.log('Quipbot listening on port ' + port)
 })
+
 var sfcon;
 
 //
@@ -85,11 +87,6 @@ app.get('/oauth2/callback', function(req, res) {
     req.session.sfdc_accessToken = conn.accessToken;
     req.session.sfdc_refreshToken = conn.refreshToken;
     req.session.sfdc_instanceUrl = conn.instanceUrl;
-    console.log(conn.accessToken);
-    console.log(conn.refreshToken);
-    console.log(conn.instanceUrl);
-    console.log("User ID: " + userInfo.id);
-    console.log("Org ID: " + userInfo.organizationId);
     sfcon = conn;
     res.send('connected to ' + conn.instanceUrl);
     // ...
@@ -244,7 +241,10 @@ function(err, rets) {
 function queryrespond(thread, annotation, message){
 var sobject = message.split(' ', 1)[0].substring(1);
 var limit = message.split(' ', 2)[1] || 10;
-var fields;
+var fields = message.split(' ', 3)[2] || null; 
+
+if(fields == null){
+
 //myArray = myString.split(',');
   switch (sobject) {
    case 'case':
@@ -256,8 +256,15 @@ var fields;
     default:
      fields ='Id, Name';
      }
+  
+  }   
+     
      //yeah a where clause would be cool
-  sfcon.query("SELECT " + fields + " FROM " + sobject + " LIMIT " + limit, function(err, result) {
+  sfcon.sobject(sobject)
+  .find({}, fields )
+  .limit(limit)
+  .execute(function(err, result){
+//  sfcon.query("SELECT " + fields + " FROM " + sobject + " LIMIT " + limit, function(err, result) {
   if (err) { 
   
      respond(thread, 'error', annotation, null);
@@ -266,13 +273,13 @@ var fields;
   console.log(result);
 
 //get rid of the attributes
-for (var i = 0, len = result.records.length; i < len; i++) {
+for (var i = 0, len = result.length; i < len; i++) {
 
-    delete result.records[i].attributes;
+    delete result[i].attributes;
 }
   
   //call addsection to add to spreadsheet
-  addsection(thread, compiledFunction({  records: result.records, rtype: sobject}));
+  addsection(thread, compiledFunction({  records: result, rtype: sobject}));
 
 
 }
