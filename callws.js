@@ -248,10 +248,13 @@ if(fields == null){
 //myArray = myString.split(',');
   switch (sobject) {
    case 'case':
-    fields ='Id, Subject, Status';
+    fields ='Id, Subject, description, Status';
     break;
     case 'workorder':
      fields ='id, Subject, Status';
+     break;
+    case 'contact':
+     fields ='id, lastname, firstname';
      break;
     default:
      fields ='Id, Name';
