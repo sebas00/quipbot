@@ -6,21 +6,21 @@ This Quipbot opens a websocket to quip, and can retrieve and update Salesforce d
 
 ##Usage
 
-query:
-#sobject limit fields
+###query:
+\#sobject limit fields
 
 examples:
-#case 10
--gets 10 cases
+\#case 10
+*gets 10 cases*
 
-#contact 50 id,firstname,lastname
--gets 50 contacts with id, firstname and lastname
+\#contact 50 id,firstname,lastname
+*gets 50 contacts with id, firstname and lastname*
 
-update:
-#upload sobject
+###update:
+\#upload sobject
 
 examples
-#upload case
+\#upload case
 updates all retrieved cases
 if you want to update records always load the id as first field!
 
